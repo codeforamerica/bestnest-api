@@ -16,4 +16,4 @@ $ npm start
 `rentfax-api` is build using the [mach framework](https://www.npmjs.org/package/mach)
 
 ## license
-(c) Code for America. MIT license
+(c) MMXIV Code for America. MIT license
