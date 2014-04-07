@@ -6,4 +6,4 @@ app.get('/', function (req) {
   return "hey sup"
 })
 
-mach.serve(app, 9001)
+mach.serve(app, process.env.PORT)
