@@ -1,0 +1,26 @@
+{
+  "name": "rentfax-api",
+  "version": "0.0.0",
+  "description": "rentfax-api ===========",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/mocha",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/codeforamerica/rentfax-api.git"
+  },
+  "author": "codeforamerica",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codeforamerica/rentfax-api/issues"
+  },
+  "homepage": "https://github.com/codeforamerica/rentfax-api",
+  "dependencies": {
+    "mach": "^0.9.2"
+  },
+  "devDependencies": {
+    "mocha": "^1.18.2"
+  }
+}
