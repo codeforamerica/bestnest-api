@@ -3,6 +3,9 @@ var querystring = require('querystring')
 require('polyfill-promise')
 var db = require('./db')
 
+
+var summaryView = require('./views/summaryView')
+
 var app = mach.stack()
 
 app.get('/', function (req) {
@@ -33,7 +36,7 @@ app.get('/search', function (req) {
 
 app.get('/buildings/:id', function (req, id) {
 
-  return db.buildings.byId(id)
+  return summaryView(id)
     .then(function (doc) {
       return JSON.stringify(doc)
     })
