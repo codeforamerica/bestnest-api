@@ -1,10 +1,11 @@
 {
-  "name": "rentfax-api",
+  "name": "rentfacts-api",
   "version": "0.0.0",
-  "description": "rentfax-api ===========",
+  "description": "primary api service for rentfacts",
   "main": "index.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha",
+    "gate": "sanitycheck && npm test",
     "start": "node ."
   },
   "repository": {
@@ -18,10 +19,17 @@
   },
   "homepage": "https://github.com/codeforamerica/rentfax-api",
   "dependencies": {
-    "mach": "^0.9.2"
+    "mach": "^0.9.2",
+    "minq": "^1.0.0-pre8",
+    "resolved": "^0.3.3",
+    "dotmap": "^0.1.0"
   },
   "devDependencies": {
     "mocha": "^1.18.2",
-    "chai": "^1.9.1"
+    "chai": "^1.9.1",
+    "charybdis": "^0.1.2",
+    "tuttle": "^0.1.1",
+    "minq": "^1.0.0-pre7",
+    "sanitycheck": "^0.1.1"
   }
 }
