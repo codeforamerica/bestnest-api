@@ -21,3 +21,6 @@ after_success:
   - heroku keys:clear
   - yes | heroku keys:add
   - yes | git push heroku master
+notifications:
+  irc:
+  - "chat.freenode.net#cfacha"
