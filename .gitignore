@@ -1,3 +1,4 @@
 node_modules/
-envenv.dev
+env
+env.dev
 env.prod
