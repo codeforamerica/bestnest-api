@@ -23,4 +23,7 @@ after_success:
   - yes | git push heroku master
 notifications:
   irc:
-  - "chat.freenode.net#cfacha"
+    channels:
+      - "chat.freenode.net#cfacha"
+    on_success: always
+    on_failure: always
