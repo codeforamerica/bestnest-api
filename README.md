@@ -1,5 +1,6 @@
 rentfax-api
 ===========
+![](https://travis-ci.org/codeforamerica/rentfacts-api.svg)
 
 ## installation
 ```
@@ -10,7 +11,7 @@ You'll also have to have some environment variables defined. You can get started
 ```
 $ cp env.example env
 ```
-
+In production, use whichever method you like best for managing environment variables, e.g. Heroku `config:set`
 
 ## running
 ```
@@ -20,6 +21,7 @@ $ npm start
 
 ## environment variables
 - `PORT` - the primary web port to bind to
+- `DB_CONN_STR` - a mongodb [connection url](http://docs.mongodb.org/manual/reference/connection-string/)
 
 
 ## framework
