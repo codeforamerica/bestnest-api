@@ -6,3 +6,19 @@ script: npm test
 branches:
   only:
     - master
+env:
+    global:
+        - secure: 
+          # HEROKU_API_KEY
+          "VeeD7qYBobb4r3vm4hrzoxEf0YtN8b5AUA40Dlpuj1KrbV6bTyLbxrXB8J+RCAo4INEJNDSX1uN+3pQmAto1tRVLhWO5UopgZZ2qsqLXaMmhm3lXpSw5c/H80i/190dWtCwYm5ttVJWrLtrwAradaid9UwUzYh6x0iBLZWeVUf0="
+after_success:
+  - if [[ "$TRAVIS_BRANCH" != "master" ]]; then echo "No deploy is associated with this branch"; exit 0; fi
+  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+  - git remote add heroku git@heroku.com:rentfacts-api-dev.git
+  - echo "Host heroku.com" >> ~/.ssh/config
+  - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+  - echo "   CheckHostIP no" >> ~/.ssh/config
+  - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+  - heroku keys:clear
+  - yes | heroku keys:add
+  - yes | git push heroku master
