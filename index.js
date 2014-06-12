@@ -1,23 +1,43 @@
-var mach = require('mach')
+var express = require('express')
 var querystring = require('querystring')
 require('polyfill-promise')
+var logger = require('morgan')
 var db = require('./db')
-
 
 var summaryView = require('./views/summaryView')
 
-var app = mach.stack()
+var http = express()
 
-app.get('/', function (req) {
+http.use(logger())
+
+function respondWith(fn) {
+  // create an express response handler
+  // from a promise-returning function
+  return function (req, res) {
+    Promise.resolve()
+      .then(function () {
+        return fn(req)
+      })
+      .then(function (val) {
+        res.send(val)
+      })
+      .catch(function (e) {
+        res.send(500, 'error')
+        console.error('error:', e && e.stack ? e.stack : e)
+      })
+  }
+}
+
+http.get('/', respondWith(function (req) {
   return "hey sup"
-})
+}))
 
 function startsWith(q) {
   // unsafe, should escape regex chars + check for slow regexps
   return new RegExp('^' + q)
 }
 
-app.get('/search', function (req) {
+http.get('/search', respondWith(function (req) {
   var params = querystring.parse(req.queryString)
   console.log(params)
 
@@ -32,17 +52,17 @@ app.get('/search', function (req) {
   }
 
   throw new Error('invalid search')
-})
+}))
 
-app.get('/buildings/:id', function (req, id) {
-
+http.get('/buildings/:id', respondWith(function (req) {
+  var id = req.params.id
   return summaryView(id)
     .then(function (doc) {
       return JSON.stringify(doc)
     })
 
-})
+}))
 
-console.log(app._app._routes)
+// console.log(app._app._routes)
 
-mach.serve(app, process.env.PORT)
+http.listen(process.env.PORT)

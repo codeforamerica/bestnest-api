@@ -23,7 +23,9 @@
     "minq": "^1.0.0-pre8",
     "resolved": "^0.3.3",
     "dotmap": "^0.1.0",
-    "polyfill-promise": "^0.1.3"
+    "polyfill-promise": "^0.1.3",
+    "express": "^4.4.3",
+    "morgan": "^1.1.1"
   },
   "devDependencies": {
     "mocha": "^1.18.2",
