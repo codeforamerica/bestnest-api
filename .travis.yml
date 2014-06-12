@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - '0.10'
-script: npm test
+script: npm run gate
 # whitelist master branch
 branches:
   only:
