@@ -2,6 +2,7 @@ var express = require('express')
 var querystring = require('querystring')
 require('polyfill-promise')
 var logger = require('morgan')
+var EngineLight = require('engine-light')
 var db = require('./db')
 
 var summaryView = require('./views/summaryView')
@@ -9,6 +10,7 @@ var summaryView = require('./views/summaryView')
 var http = express()
 
 http.use(logger())
+http.use((new EngineLight).getMiddleware())
 
 function respondWith(fn) {
   // create an express response handler
