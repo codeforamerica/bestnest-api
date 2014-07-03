@@ -11,6 +11,7 @@ env:
         # HEROKU_API_KEY
         - secure: "VeeD7qYBobb4r3vm4hrzoxEf0YtN8b5AUA40Dlpuj1KrbV6bTyLbxrXB8J+RCAo4INEJNDSX1uN+3pQmAto1tRVLhWO5UopgZZ2qsqLXaMmhm3lXpSw5c/H80i/190dWtCwYm5ttVJWrLtrwAradaid9UwUzYh6x0iBLZWeVUf0="
 after_success:
+  - if [[ "$TRAVIS_PULL_REQUEST" == "true" ]]; then echo "This is a pull request. No deployment will be done."; exit 0; fi
   - if [[ "$TRAVIS_BRANCH" != "master" ]]; then echo "No deploy is associated with this branch"; exit 0; fi
   - echo "Deploying to Heroku: rentfacts-api-dev"
   - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
@@ -30,3 +31,4 @@ notifications:
     on_failure: always
     skip_join: true
     use_notice: true
+  webhooks: http://project-monitor.codeforamerica.org/projects/6ee3ad02-a7ba-4f9d-aab5-fc4ce55a59d5/status
