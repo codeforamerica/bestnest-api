@@ -1,6 +1,6 @@
 bestnest-api
 ===========
-![](https://travis-ci.org/codeforamerica/bestnest-api.svg)
+[![](https://travis-ci.org/codeforamerica/bestnest-api.svg)](https://travis-ci.org/codeforamerica/bestnest-api)
 
 Read this to get started with the project. See also our [API documentation](https://github.com/codeforamerica/bestnest-api/wiki)
 
