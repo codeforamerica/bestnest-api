@@ -2,6 +2,7 @@ rentfacts-api
 ===========
 ![](https://travis-ci.org/codeforamerica/rentfacts-api.svg)
 
+Read this to get started with the project. See also our [API documentation](https://github.com/codeforamerica/rentfacts-api/wiki)
 
 ## installation
 
