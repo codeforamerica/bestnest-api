@@ -1,7 +1,7 @@
 {
-  "name": "rentfacts-api",
+  "name": "bestnest-api",
   "version": "0.0.0",
-  "description": "primary api service for rentfacts",
+  "description": "primary api service for bestnest",
   "main": "index.js",
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/codeforamerica/rentfax-api.git"
+    "url": "git://github.com/codeforamerica/bestnest-api.git"
   },
   "author": "codeforamerica",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codeforamerica/rentfax-api/issues"
+    "url": "https://github.com/codeforamerica/bestnest-api/issues"
   },
-  "homepage": "https://github.com/codeforamerica/rentfax-api",
+  "homepage": "https://github.com/codeforamerica/bestnest-api",
   "dependencies": {
     "minq": "^1.0.0-pre8",
     "resolved": "^0.3.3",

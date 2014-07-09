@@ -13,9 +13,9 @@ env:
 after_success:
   - if [[ "$TRAVIS_PULL_REQUEST" == "true" ]]; then echo "This is a pull request. No deployment will be done."; exit 0; fi
   - if [[ "$TRAVIS_BRANCH" != "master" ]]; then echo "No deploy is associated with this branch"; exit 0; fi
-  - echo "Deploying to Heroku: rentfacts-api-dev"
+  - echo "Deploying to Heroku: bestnest-api-dev"
   - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-  - git remote add heroku git@heroku.com:rentfacts-api-dev.git
+  - git remote add heroku git@heroku.com:bestnest-api-dev.git
   - echo "Host heroku.com" >> ~/.ssh/config
   - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
   - echo "   CheckHostIP no" >> ~/.ssh/config

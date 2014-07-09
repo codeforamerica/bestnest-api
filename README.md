@@ -1,13 +1,13 @@
-rentfacts-api
+bestnest-api
 ===========
-![](https://travis-ci.org/codeforamerica/rentfacts-api.svg)
+![](https://travis-ci.org/codeforamerica/bestnest-api.svg)
 
-Read this to get started with the project. See also our [API documentation](https://github.com/codeforamerica/rentfacts-api/wiki)
+Read this to get started with the project. See also our [API documentation](https://github.com/codeforamerica/bestnest-api/wiki)
 
 ## installation
 
 ```console
-$ git clone git@github.com:codeforamerica/rentfacts-api.git && cd rentfacts-api
+$ git clone git@github.com:codeforamerica/bestnest-api.git && cd bestnest-api
 $ npm install
 ```
 You'll also have to have some environment variables defined. You can get started by
@@ -43,7 +43,7 @@ issue if you would like to get this project set up and running.
 
 ## framework
 
-`rentfacts-api` is build using the
+`bestnest-api` is build using the
 [mach framework](https://www.npmjs.org/package/mach)
 
 
@@ -53,10 +53,10 @@ Pull Requests are welcome. Development is discussed in Github Issues and on IRC.
 Test and deployment spam and other notifications are pushed into IRC at
 `irc.freenode.net#cfacha`.
 
-The primary client for this API is [rentfacts-app](https://github.com/codeforamerica/rentfacts-app).
+The primary client for this API is [rentfacts-app](https://github.com/codeforamerica/bestnest-app).
 Relevant discussion and background may also be located in that repo.
 
-Please also see [`CONTRIBUTING.md`](https://github.com/codeforamerica/rentfacts-api/blob/master/CONTRIBUTING.md)
+Please also see [`CONTRIBUTING.md`](https://github.com/codeforamerica/bestnest-api/blob/master/CONTRIBUTING.md)
 for community contribution guidelines.
 
 
