@@ -44,14 +44,14 @@ issue if you would like to get this project set up and running.
 ## framework
 
 `bestnest-api` is build using the
-[mach framework](https://www.npmjs.org/package/mach)
+[express 4 framework](https://www.npmjs.org/package/express)
 
 
 ## contributing
 
 Pull Requests are welcome. Development is discussed in Github Issues and on IRC.
 Test and deployment spam and other notifications are pushed into IRC at
-`irc.freenode.net#cfacha`.
+[`irc://irc.freenode.net/cfacha`](https://webchat.freenode.net/?channels=cfacha).
 
 The primary client for this API is [rentfacts-app](https://github.com/codeforamerica/bestnest-app).
 Relevant discussion and background may also be located in that repo.
