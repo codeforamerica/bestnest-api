@@ -56,7 +56,7 @@ http.get('/search', respondWith(function (req) {
   throw new Error('invalid search')
 }))
 
-http.get('/buildings/:id', respondWith(function (req) {
+http.get('/homes/:id', respondWith(function (req) {
   var id = req.params.id
   return summaryView(id)
     .then(function (doc) {
