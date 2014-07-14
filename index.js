@@ -5,6 +5,9 @@ var logger = require('morgan')
 var EngineLight = require('engine-light')
 var db = require('./db')
 var cors = require('cors')
+var like = require('like')
+
+var kRootUri = 'http://' + process.env.URI_ROOT
 
 var summaryView = require('./views/summaryView')
 
@@ -42,17 +45,25 @@ function startsWith(q) {
 }
 
 http.get('/search', respondWith(function (req) {
-  var params = querystring.parse(req.queryString)
-  console.log(params)
-
-  if (params.q) {
+  var query = req.query.q
+  if (query) {
     // search by address
-    return db.buildings.where({address: startsWith(params.q)})
-      .then(function (docs) {
-        return JSON.stringify({
-          results: docs
-        })
+    return db.then(function (db) {
+      return db.parcels
+        .where({'address.full': like.startsWith(query)})
+        .select(['address.full','id'])
+        .then(function (docs) {
+          return JSON.stringify({
+            results: docs.map(function (doc) {
+              return {
+                id: doc.id,
+                address: doc.address.full,
+                href: kRootUri + 'homes/' + doc.id
+              }
+            })
+          })
       })
+    })
   }
 
   throw new Error('invalid search')

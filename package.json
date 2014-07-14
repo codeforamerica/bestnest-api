@@ -26,7 +26,8 @@
     "express": "^4.4.3",
     "morgan": "^1.1.1",
     "engine-light": "^0.1.1",
-    "cors": "^2.4.1"
+    "cors": "^2.4.1",
+    "like": "^0.1.0"
   },
   "devDependencies": {
     "mocha": "^1.18.2",
