@@ -49,15 +49,17 @@ http.get('/search', respondWith(function (req) {
   if (query) {
     // search by address
     return db.then(function (db) {
-      return db.parcels
-        .where({'address.full': like.startsWith(query)})
-        .select(['address.full','id'])
+      return db.homes
+        .where({'properties.full': like.startsWith(query)})
+        .select(['properties.full','id','properties.city'])
         .then(function (docs) {
           return JSON.stringify({
             results: docs.map(function (doc) {
               return {
                 id: doc.id,
-                address: doc.address.full,
+                address: doc.properties.full,
+                city: doc.properties.city,
+                state: 'TN',
                 href: kRootUri + 'homes/' + doc.id
               }
             })
