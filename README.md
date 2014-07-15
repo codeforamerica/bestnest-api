@@ -30,6 +30,7 @@ $ npm start
 
 - `PORT` - the primary web port to bind to
 - `DB_CONN_STR` - a mongodb [connection url](http://docs.mongodb.org/manual/reference/connection-string/)
+- `URI_ROOT` - the hostname and port and forward slash that the server is listening on (eg `localhost:9001/`)
 
 
 ## database
