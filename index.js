@@ -6,6 +6,7 @@ var EngineLight = require('engine-light')
 var db = require('./db')
 var cors = require('cors')
 var like = require('like')
+var search = require('./search')
 
 var kRootUri = 'http://' + process.env.URI_ROOT
 
@@ -48,27 +49,10 @@ http.get('/search', respondWith(function (req) {
   var query = req.query.q
   if (query) {
     // search by address
-    return db.then(function (db) {
-      return db.homes
-        .where({'properties.full': like.startsWith(query)})
-        .select(['properties.full','id','properties.city'])
-        .then(function (docs) {
-          return JSON.stringify({
-            results: docs.map(function (doc) {
-              return {
-                id: doc.id,
-                address: doc.properties.full,
-                city: doc.properties.city,
-                state: 'TN',
-                href: kRootUri + 'homes/' + doc.id
-              }
-            })
-          })
-      })
-    })
+    return search(query)
   }
 
-  throw new Error('invalid search')
+  throw new Error('invalid search: no query specified')
 }))
 
 http.get('/homes/:id', respondWith(function (req) {
@@ -82,4 +66,7 @@ http.get('/homes/:id', respondWith(function (req) {
 
 // console.log(app._app._routes)
 
-http.listen(process.env.PORT)
+http.listen(process.env.PORT, function (err) {
+  if (err) { return console.error(err.stack || err) }
+    console.log('listening on ' + kRootUri)
+})
