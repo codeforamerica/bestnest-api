@@ -4,13 +4,13 @@ var db = require('../db')
 
 function summaryView(id) {
   return db.then(function (db) {
-    var parcel = db.parcels.byId(id)
-    var data = db.data.where({parcelId: id})
+    var home = db.homes.byId(id)
+    var data = db.data.where({homeId: id})
 
     return resolved({
-      id: parcel.then(to('_id')),
-      parcelId: parcel.then(to('parcelId')),
-      address: parcel.then(to('address.full')),
+      id: home.then(to('_id')),
+      parcelId: home.then(to('properties.parcel')),
+      address: home.then(to('properties.full')),
       data: data.then(function (docs) {
         return {}
       })
