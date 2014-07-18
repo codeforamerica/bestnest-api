@@ -8,7 +8,7 @@ var cors = require('cors')
 var like = require('like')
 var search = require('./search')
 
-var kRootUri = 'http://' + process.env.URI_ROOT
+var kRootUrl = process.env.URL_ROOT
 
 var summaryView = require('./views/summaryView')
 
@@ -68,5 +68,5 @@ http.get('/homes/:id', respondWith(function (req) {
 
 http.listen(process.env.PORT, function (err) {
   if (err) { return console.error(err.stack || err) }
-    console.log('listening on ' + kRootUri)
+    console.log('listening on ' + kRootUrl)
 })

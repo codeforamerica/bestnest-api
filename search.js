@@ -1,6 +1,6 @@
 var db = require('./db')
 var like = require('like')
-var kRootUri = 'http://' + process.env.URI_ROOT
+var kRootUrl = process.env.URL_ROOT
 
 function search(query) {
   return db.then(function (db) {
@@ -21,7 +21,7 @@ function searchResultView(doc) {
     address: doc.properties.full,
     city: doc.properties.city,
     state: 'TN',
-    href: kRootUri + 'homes/' + doc.id
+    href: kRootUrl + 'homes/' + doc.id
   }
 }
 
