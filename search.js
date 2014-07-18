@@ -8,7 +8,9 @@ function search(query) {
       .where({'properties.full': like.startsWith(query)})
       .select(['properties.full','id','properties.city'])
       .then(function (results) {
-        return results.map(searchResultView)
+        return {
+            results: results.map(searchResultView)
+          }
       })  
   })
 }
