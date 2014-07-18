@@ -3,6 +3,7 @@ var like = require('like')
 var kRootUrl = process.env.URL_ROOT
 
 function search(query) {
+  query = String(query).toUpperCase()
   return db.then(function (db) {
     return db.homes
       .where({'properties.full': like.startsWith(query)})
