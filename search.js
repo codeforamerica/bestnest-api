@@ -7,6 +7,7 @@ function search(query) {
     return db.homes
       .where({'properties.full': like.startsWith(query)})
       .select(['properties.full','id','properties.city'])
+      .limit(7)
       .then(function (results) {
         return {
             results: results.map(searchResultView)
