@@ -1,0 +1,8 @@
+machine:
+  node:
+    version: v0.10.29
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: bestnest-api-dev
