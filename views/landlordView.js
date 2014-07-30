@@ -17,13 +17,27 @@ function landlordView(id) {
 }
 
 function propertyRowView(doc) {
-  return {
-    id: doc.id,
-    address: doc.ownerAddress_full,
-    city: doc.ownerAddress_city,
-    state: doc.ownerAddress_state,
-    //href: kRootUrl + 'homes/' + doc.id
-  }
+  return getPropertyId(doc.parcelId)
+    .then(function(id) {
+      return {
+        id: id,
+        address: doc.ownerAddress_full,
+        city: doc.ownerAddress_city,
+        state: doc.ownerAddress_state,
+        href: kRootUrl + 'homes/' + id
+      }
+  })
+}
+
+function getPropertyId(parcelId) {
+  return db.then(function(db) {
+    return db.homes
+      .where({'properties.parcel': parcelId})
+      .select(['id']).first()
+      .then(function(home){
+        return home.id
+      })
+  })
 }
 
 function getOwnerHomes(owner) {
@@ -31,7 +45,7 @@ function getOwnerHomes(owner) {
     return db.parcelOwners
       .where({owner1: owner})
       .then(function(homes) {
-        return homes.map(propertyRowView)
+        return resolved(homes.map(propertyRowView))
       })
   })
 }
