@@ -11,6 +11,8 @@ function summaryView(id) {
       id: home.then(to('_id')),
       parcelId: home.then(to('properties.parcel')),
       address: home.then(to('properties.full')),
+      city: home.then(to('properties.city')),
+      state: 'TN',
       data: data
     })
   })
@@ -19,7 +21,7 @@ function summaryView(id) {
 function getData(home) {
   return home.then(function (home) {
     var data = {}
-    
+
     data.owner = getOwner(home)
 
     return resolved(data)
