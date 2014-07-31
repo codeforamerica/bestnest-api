@@ -1,4 +1,4 @@
-var b64 = require('base64')
+var querystring = require('querystring')
 var resolved = require('resolved')
 var to = require('dotmap')
 var db = require('../db')
@@ -37,7 +37,7 @@ function getOwner(home) {
       .where({parcelId: home.properties.parcel})
       .firstOrDefault({})
       .then(function (owner) {
-        var id = b64.encode(owner.owner1)
+        var id = querystring.escape(owner.owner1)
 
         return {
           id: id,
