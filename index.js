@@ -1,17 +1,17 @@
+require('polyfill-promise')
 var express = require('express')
 var querystring = require('querystring')
-require('polyfill-promise')
 var logger = require('morgan')
 var EngineLight = require('engine-light')
-var db = require('./db')
 var cors = require('cors')
 var like = require('like')
+
+var db = require('./db')
 var search = require('./search')
+var summaryView = require('./views/summaryView')
+var landlordView = require('./views/landlordView')
 
 var kRootUrl = process.env.URL_ROOT
-
-var summaryView = require('./views/summaryView')
-
 var http = express()
 
 http.use(logger())
@@ -61,7 +61,15 @@ http.get('/homes/:id', respondWith(function (req) {
     .then(function (doc) {
       return JSON.stringify(doc)
     })
+}))
 
+http.get('/landlords/:id', respondWith(function (req) {
+  var id = req.params.id
+
+  return landlordView(id)
+    .then(function (doc) {
+      return JSON.stringify(doc)
+    })
 }))
 
 // console.log(app._app._routes)
