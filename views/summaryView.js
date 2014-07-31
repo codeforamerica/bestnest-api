@@ -14,6 +14,8 @@ function summaryView(id) {
       id: home.then(to('_id')),
       parcelId: home.then(to('properties.parcel')),
       address: home.then(to('properties.full')),
+      city: home.then(to('properties.city')),
+      state: 'TN',
       data: data
     })
   })
