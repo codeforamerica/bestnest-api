@@ -10,6 +10,7 @@ function codeViolationsView(id) {
     var data = getData(home)
 
     return resolved({
+      id: home.then(to('_id')),
       data: data
     })
   })
