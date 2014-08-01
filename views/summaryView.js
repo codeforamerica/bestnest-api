@@ -3,6 +3,8 @@ var resolved = require('resolved')
 var to = require('dotmap')
 var db = require('../db')
 
+var getCodeViolations = require('./codeViolationsView').getCodeViolations
+
 var kRootUrl = process.env.URL_ROOT
 
 function summaryView(id) {
@@ -26,6 +28,7 @@ function getData(home) {
     var data = {}
 
     data.owner = getOwner(home)
+    data.violations = getCodeViolations(home, 2)
 
     return resolved(data)
   })
