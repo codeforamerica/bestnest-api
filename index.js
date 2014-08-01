@@ -10,6 +10,7 @@ var db = require('./db')
 var search = require('./search')
 var summaryView = require('./views/summaryView')
 var landlordView = require('./views/landlordView')
+var codeViolationsView = require('./views/codeViolationsView')
 
 var kRootUrl = process.env.URL_ROOT
 var http = express()
@@ -58,6 +59,14 @@ http.get('/search', respondWith(function (req) {
 http.get('/homes/:id', respondWith(function (req) {
   var id = req.params.id
   return summaryView(id)
+    .then(function (doc) {
+      return JSON.stringify(doc)
+    })
+}))
+
+http.get('/homes/:id/violations', respondWith(function (req) {
+  var id = req.params.id
+  return codeViolationsView(id)
     .then(function (doc) {
       return JSON.stringify(doc)
     })
