@@ -28,7 +28,10 @@ function getData(home) {
     var data = {}
 
     data.owner = getOwner(home)
-    data.violations = getCodeViolations(home, 2)
+    data.violations = {
+      href: kRootUrl + 'homes/' + home.id + '/violations',
+      violations: getCodeViolations(home, 2)
+    }
 
     return resolved(data)
   })
