@@ -29,8 +29,8 @@ function getCodeViolations(home, limit) {
   return db.then(function(db) {
     return db.codeViolations
       .where({address: home.properties.full})
-      .limit(limit)
       .sort([['violationId', 'desc']])
+      .limit(limit)
       .then(function (violations) {
         return violations
       })
