@@ -1,41 +1,26 @@
 var resolved = require('resolved')
 var to = require('dotmap')
-var db = require('../db')
 
-var kRootUrl = process.env.URL_ROOT
+var db
+require('../db').then(function (_db) {
+  console.log('got db')
+  db = _db
+})
 
 function codeViolationsView(id) {
-  return db.then(function (db) {
-    var home = db.homes.byId(id)
-    var data = getData(home)
+  var home = db.homes.byId(id)
+  var data = home.then(getCodeViolations)
 
-    return resolved({
-      id: home.then(to('_id')),
-      data: data
-    })
+  return resolved({
+    id: home.then(to('_id')),
+    data: data
   })
 }
 
-function getData(home) {
-  return home.then(function (home) {
-    var data = getCodeViolations(home)
-
-    return resolved(data)
-  })
-}
-
-
-function getCodeViolations(home, limit) {
-  return db.then(function(db) {
-    return db.codeViolations
-      .where({address: home.properties.full})
-      .sort([['violationId', 'desc']])
-      .limit(limit)
-      .then(function (violations) {
-        return violations
-      })
-
-  })
+function getCodeViolations(home) {
+  return db.codeViolations
+    .where({address: home.properties.full})
+    .sort([['violationId', 'desc']])
 }
 
 module.exports = codeViolationsView

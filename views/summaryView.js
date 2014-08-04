@@ -30,7 +30,8 @@ function getData(home) {
     data.owner = getOwner(home)
     data.violations = {
       href: kRootUrl + 'homes/' + home.id + '/violations',
-      violations: getCodeViolations(home, 2)
+      summary: getCodeViolations(home).limit(2),
+      count: getCodeViolations(home).count()
     }
 
     return resolved(data)
