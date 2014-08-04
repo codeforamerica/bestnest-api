@@ -1,7 +1,9 @@
-var b64 = require('base64')
+var querystring = require('querystring')
 var resolved = require('resolved')
 var to = require('dotmap')
 var db = require('../db')
+
+var getCodeViolations = require('./codeViolationsView').getCodeViolations
 
 var kRootUrl = process.env.URL_ROOT
 
@@ -26,6 +28,11 @@ function getData(home) {
     var data = {}
 
     data.owner = getOwner(home)
+    data.violations = {
+      href: kRootUrl + 'homes/' + home.id + '/violations',
+      summary: getCodeViolations(home).limit(2),
+      count: getCodeViolations(home).count()
+    }
 
     return resolved(data)
   })
@@ -37,7 +44,7 @@ function getOwner(home) {
       .where({parcelId: home.properties.parcel})
       .firstOrDefault({})
       .then(function (owner) {
-        var id = b64.encode(owner.owner1)
+        var id = querystring.escape(owner.owner1)
 
         return {
           id: id,

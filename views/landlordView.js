@@ -1,4 +1,4 @@
-var b64 = require('base64')
+var querystring = require('querystring')
 var resolved = require('resolved')
 var to = require('dotmap')
 var db = require('../db')
@@ -6,7 +6,7 @@ var db = require('../db')
 var kRootUrl = process.env.URL_ROOT
 
 function landlordView(id) {
-  var name = b64.decode(id)
+  var name = querystring.unescape(id)
   var data = getOwnerHomes(name)
 
   return resolved({
