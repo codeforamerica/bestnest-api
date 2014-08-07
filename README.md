@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/codeforamerica/bestnest-api.png?label=ready&title=Ready)](https://waffle.io/codeforamerica/bestnest-api)
 bestnest-api
 ===========
 [![](https://circleci.com/gh/codeforamerica/bestnest-api.png?circle-token=3647f81cd149934af68d54958fa1f4d242de64c4)](https://circleci.com/gh/codeforamerica/bestnest-api)
