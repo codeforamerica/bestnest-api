@@ -1,4 +1,3 @@
-require('bluebird').longStackTraces()
 var nali = require('nali')('bestnest-api')
 
 nali.registerInstance('config', require('./config'))
