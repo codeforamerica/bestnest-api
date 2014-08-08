@@ -1,30 +1,28 @@
-var db = require('./db')
 var like = require('like')
-var kRootUrl = process.env.URL_ROOT
 
-function search(query) {
-  query = String(query).toUpperCase()
-  return db.then(function (db) {
-    return db.homes
-      .where({'properties.full': like.startsWith(query)})
-      .select(['properties.full','id','properties.city'])
-      .limit(7)
-      .then(function (results) {
-        return {
-            results: results.map(searchResultView)
-          }
-      })  
-  })
-}
+module.exports = function (db, config) {
 
-function searchResultView(doc) {
-  return {
-    id: doc.id,
-    address: doc.properties.full,
-    city: doc.properties.city,
-    state: 'TN',
-    href: kRootUrl + 'homes/' + doc.id
+  return function search(query) {
+    query = String(query).toUpperCase()
+      return db.homes
+        .where({'properties.full': like.startsWith(query)})
+        .select(['properties.full','id','properties.city'])
+        .limit(7)
+        .then(function (results) {
+          return {
+              results: results.map(searchResultView)
+            }
+        })
   }
-}
 
-module.exports = search
+  function searchResultView(doc) {
+    return {
+      id: doc.id,
+      address: doc.properties.full,
+      city: doc.properties.city,
+      state: 'TN',
+      href: config.rootUrl + 'homes/' + doc.id
+    }
+  }
+
+}
