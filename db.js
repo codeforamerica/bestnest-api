@@ -1,6 +1,8 @@
 var minq = require('minq')
 
-module.exports = minq.connect(process.env.DB_CONN_STR)
+module.exports = function (config) {
+  return minq.connect(config.dbConnStr)
+}
 
 // // mock db
 // var db = {

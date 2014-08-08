@@ -27,7 +27,8 @@
     "morgan": "^1.1.1",
     "engine-light": "^0.1.1",
     "cors": "^2.4.1",
-    "like": "^0.3.0"
+    "like": "^0.3.0",
+    "nali": "^1.0.0-pre4"
   },
   "devDependencies": {
     "mocha": "^1.18.2",
