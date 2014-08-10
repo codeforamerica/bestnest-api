@@ -1,3 +1,5 @@
+require('newrelic')
+
 var nali = require('nali')('bestnest-api')
 
 nali.registerInstance('config', require('./config'))
