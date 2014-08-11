@@ -12,7 +12,7 @@ function respondWith(fn) {
         res.send(val)
       })
       .catch(function (e) {
-        res.send(500, 'error')
+        res.send(e.code || 500, 'error')
         console.error('error:', e && e.stack ? e.stack : e)
       })
   }
