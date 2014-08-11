@@ -1,5 +1,6 @@
 var respondWith = require('./respondWith')
-
+var html2plaintext = require('html2plaintext')
+var funderscore = require('funderscore')
 var logger = require('morgan')
 var EngineLight = require('engine-light')
 var cors = require('cors')
@@ -68,8 +69,11 @@ module.exports = function (
   }))
 
   http.post('/comments', jsonBody, respondWith(function (req) {
-    req.body.user = 'user'
-    return comments.post(req.body)
+    // strip html from user input:
+    var body = funderscore.map(req.body, html2plaintext)
+    // stub username for comments:
+    body.user = 'user'
+    return comments.post(body)
       .then(function () {
         return 201
       })
