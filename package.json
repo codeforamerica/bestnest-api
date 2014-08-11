@@ -29,7 +29,8 @@
     "cors": "^2.4.1",
     "like": "^0.3.0",
     "nali": "^1.0.0-pre4",
-    "newrelic": "^1.9.2"
+    "newrelic": "^1.9.2",
+    "body": "^4.5.0"
   },
   "devDependencies": {
     "mocha": "^1.18.2",
@@ -37,6 +38,7 @@
     "charybdis": "^0.1.2",
     "tuttle": "^0.1.1",
     "minq": "^1.0.0-pre7",
-    "sanitycheck": "^0.1.1"
+    "sanitycheck": "^0.1.1",
+    "mochi": "^0.2.0"
   }
 }

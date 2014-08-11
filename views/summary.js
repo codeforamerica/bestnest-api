@@ -3,7 +3,7 @@ var resolved = require('resolved')
 var to = require('dotmap')
 var db = require('../db')
 
-module.exports = function (codeViolationsView, db, config) {
+module.exports = function (codeViolationsView, db, config, comments) {
   var getCodeViolations = codeViolationsView.getCodeViolations
 
   function summaryView(id) {
@@ -31,6 +31,7 @@ module.exports = function (codeViolationsView, db, config) {
         summary: getCodeViolations(home).limit(2),
         count: getCodeViolations(home).count()
       }
+      data.comments = comments.getBySubject('homes/'+home.id)
 
       return resolved(data)
     })

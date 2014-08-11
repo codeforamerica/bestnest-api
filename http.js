@@ -3,6 +3,7 @@ var respondWith = require('./respondWith')
 var logger = require('morgan')
 var EngineLight = require('engine-light')
 var cors = require('cors')
+var JSONBody = require('body/json')
 
 // var summaryView = require('./views/summaryView')
 // var landlordView = require('./views/landlordView')
@@ -14,6 +15,7 @@ module.exports = function (
   landlordView,
   codeViolationsView,
   search,
+  comments,
   config
 ) {
 
@@ -65,6 +67,14 @@ module.exports = function (
       })
   }))
 
+  http.post('/comments', jsonBody, respondWith(function (req) {
+    req.body.user = 'user'
+    return comments.post(req.body)
+      .then(function () {
+        return 201
+      })
+  }))
+
   return new Promise(function (resolve, reject) {
     http.listen(config.port, function (err) {
       if (err) { return reject(err) }
@@ -73,6 +83,18 @@ module.exports = function (
     })
   })
 
+}
+
+function jsonBody (req, res, next) {
+  JSONBody(req, res, function (err, body) {
+    if (err) {
+      err.code = 400
+      return next(err)
+    }
+
+    req.body = body
+    next()
+  })
 }
 
 function startsWith(q) {
