@@ -20,6 +20,7 @@ module.exports = function (db) {
   function getBySubject(subject) {
     return db.comments
       .where({subject: subject})
+      .select(['name','date','body'])
   }
 
   return {

@@ -66,14 +66,23 @@ describe('comments', function () {
 
   describe('.getBySubject', function () {
     it('should get from db by subject', function (done) {
+      function where (search) {
+        search.should.deep.equal({
+          subject: 'homes/12'
+        })
+        return {select: select}
+      }
+      function select (projection) {
+        projection
+          .should.deep.equal([
+            'name','date','body'
+          ])
+        done()
+      }
+
       var comments = Comments({
         comments: {
-          where: function (search) {
-            search.should.deep.equal({
-              subject: 'homes/12'
-            })
-            done()
-          }
+          where: where
         }
       })
     
