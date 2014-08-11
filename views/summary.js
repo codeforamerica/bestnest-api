@@ -31,7 +31,7 @@ module.exports = function (codeViolationsView, db, config, comments) {
         summary: getCodeViolations(home).limit(2),
         count: getCodeViolations(home).count()
       }
-      data.comments = comments.getBySubject('home/'+home.id)
+      data.comments = comments.getBySubject('homes/'+home.id)
 
       return resolved(data)
     })
