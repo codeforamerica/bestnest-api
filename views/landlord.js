@@ -16,16 +16,18 @@ module.exports = function (db, config) {
   }
 
   function propertyRowView(doc) {
-    return getPropertyId(doc.parcelId)
-      .then(function(id) {
+    return db.homes.where({'properties.parcel': doc.parcelId})
+      .select(['id','properties.full','properties.city'])
+      .first()
+      .then(function (home) {
         return {
-          id: id,
-          address: doc.ownerAddress_full,
-          city: doc.ownerAddress_city,
-          state: doc.ownerAddress_state,
-          href: config.rootUrl + 'homes/' + id
+          id: home.id,
+          address: home.properties.full,
+          city: home.properties.city,
+          state: 'TN',
+          href: config.rootUrl + 'home/' + home.id
         }
-    })
+      })
   }
 
   function getPropertyId(parcelId) {
