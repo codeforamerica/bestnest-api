@@ -32,7 +32,6 @@ module.exports = function (codeViolationsView, db, config, comments) {
         count: getCodeViolations(home).count()
       }
       data.comments = comments.getBySubject('home/'+home.id)
-                              .firstOrDefault(null)
 
       return resolved(data)
     })
