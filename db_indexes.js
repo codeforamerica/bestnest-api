@@ -4,11 +4,11 @@ require('./db')(require('./config')).then(function (db) {
   var index = P.call(db, db.ensureIndex)
   
   return Promise.all([
-    index('records', {'properties.full':1})
   , index('parcelOwners', {'parcelId':1})  
   , index('parcelOwners', {'owner1':1})
   , index('codeViolations', {'home.properties.full':1})
   , index('homes', {'properties.parcel':1})
+  , index('homes', {'properties.full':1})
   , index('comments', {'subject':1})
   ])
 })

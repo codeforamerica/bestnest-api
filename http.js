@@ -27,6 +27,11 @@ module.exports = function (
   http.use((new EngineLight).getMiddleware())
   http.use(cors({methods: ['GET']}))
 
+  http.user(function (req, res, next) {
+    // dummy session
+    req.userId = 'user'
+  })
+
 
   http.get('/', respondWith(function (req) {
     return "hey sup"
@@ -72,8 +77,25 @@ module.exports = function (
     // strip html from user input:
     var body = funderscore.map(req.body, html2plaintext)
     // stub username for comments:
-    body.user = 'user'
+    body.userId = req.userId
     return comments.post(body)
+      .then(function () {
+        return 201
+      })
+  }))
+
+  // body: { rel: String, value: String }
+  http.post('/homes/:id/data', jsonBody, respondWith(function (req) {
+    var body = funderscore.map(req.body, html2plaintext)
+    
+    if (!(rel in body)) {
+      return 400
+    }
+    if (!(value in body)) {
+      return 400
+    }
+
+    return userGeneratedContent.post(req.params.id, body.rel, body.value, req.userId)
       .then(function () {
         return 201
       })
