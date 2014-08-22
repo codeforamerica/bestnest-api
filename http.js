@@ -17,7 +17,8 @@ module.exports = function (
   codeViolationsView,
   search,
   comments,
-  config
+  config,
+  userGeneratedContent
 ) {
 
   var express = require('express')
@@ -27,9 +28,10 @@ module.exports = function (
   http.use((new EngineLight).getMiddleware())
   http.use(cors({methods: ['GET']}))
 
-  http.user(function (req, res, next) {
+  http.use(function (req, res, next) {
     // dummy session
     req.userId = 'user'
+    next()
   })
 
 
@@ -88,14 +90,14 @@ module.exports = function (
   http.post('/homes/:id/data', jsonBody, respondWith(function (req) {
     var body = funderscore.map(req.body, html2plaintext)
     
-    if (!(rel in body)) {
+    if (!('rel' in body)) {
       return 400
     }
-    if (!(value in body)) {
+    if (!('value' in body)) {
       return 400
     }
 
-    return userGeneratedContent.post(req.params.id, body.rel, body.value, req.userId)
+    return userGeneratedContent.save(req.params.id, body.rel, body.value, req.userId)
       .then(function () {
         return 201
       })
