@@ -12,6 +12,7 @@ nali.registerService('landlordView', require('./views/landlord'))
 nali.registerService('codeViolationsView', require('./views/codeViolations'))
 nali.registerService('comments', require('./comments'))
 
+nali.registerService('userGeneratedContent', require('./services/userGeneratedContent'))
 
 nali.resolve('http').then(function (http) {
   console.log('bestnest-api started')
