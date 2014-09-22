@@ -32,7 +32,9 @@
     "newrelic": "^1.9.2",
     "body": "^4.5.0",
     "html2plaintext": "^1.0.1",
-    "funderscore": "^0.7.0"
+    "funderscore": "^0.7.0",
+    "hes-soap-client": "^0.1.0",
+    "memoizee": "^0.3.7"
   },
   "devDependencies": {
     "mocha": "^1.18.2",

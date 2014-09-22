@@ -6,15 +6,12 @@ var EngineLight = require('engine-light')
 var cors = require('cors')
 var JSONBody = require('body/json')
 
-// var summaryView = require('./views/summaryView')
-// var landlordView = require('./views/landlordView')
-// var codeViolationsView = require('./views/codeViolationsView')
-
 
 module.exports = function (
   summaryView,
   landlordView,
   codeViolationsView,
+  energyView,
   search,
   comments,
   config,
@@ -53,26 +50,26 @@ module.exports = function (
   http.get('/homes/:id', respondWith(function (req) {
     var id = req.params.id
     return summaryView(id)
-      .then(function (doc) {
-        return JSON.stringify(doc)
-      })
+      .then(toJSON)
   }))
 
   http.get('/homes/:id/violations', respondWith(function (req) {
     var id = req.params.id
     return codeViolationsView(id)
-      .then(function (doc) {
-        return JSON.stringify(doc)
-      })
+      .then(toJSON)
+  }))
+
+  http.get('/homes/:id/energy', respondWith(function (req) {
+    var id = req.params.id
+    return energyView(id)
+      .then(toJSON)
   }))
 
   http.get('/landlords/:id', respondWith(function (req) {
     var id = req.params.id
 
     return landlordView(id)
-      .then(function (doc) {
-        return JSON.stringify(doc)
-      })
+      .then(toJSON)
   }))
 
   http.post('/comments', jsonBody, respondWith(function (req) {
@@ -128,4 +125,8 @@ function jsonBody (req, res, next) {
 function startsWith(q) {
   // unsafe, should escape regex chars + check for slow regexps
   return new RegExp('^' + q)
+}
+
+function toJSON(x) {
+  return JSON.stringify(x)
 }

@@ -10,6 +10,7 @@ nali.registerService('http', require('./http'))
 nali.registerService('summaryView', require('./views/summary'))
 nali.registerService('landlordView', require('./views/landlord'))
 nali.registerService('codeViolationsView', require('./views/codeViolations'))
+nali.registerService('energyView', require('./views/energy'))
 nali.registerService('comments', require('./comments'))
 
 nali.registerService('userGeneratedContent', require('./services/userGeneratedContent'))
