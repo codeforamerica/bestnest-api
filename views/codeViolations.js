@@ -12,11 +12,11 @@ module.exports = function (db) {
       data: data
     })
   }
-  
+
   function getCodeViolations(home) {
     return db.codeViolations
       .where({address: home.properties.full})
-      .sort([['violationId', 'desc']])
+      .sort([['dateEntered', 'desc']])
   }
 
   codeViolationsView.getCodeViolations = getCodeViolations
